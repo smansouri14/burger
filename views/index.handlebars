@@ -1,0 +1,50 @@
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center" id="top-bar">
+                <h1>Eat Da Burger!</h1>
+                <img src="../public/assets/img/burger.jpg"></img>
+        </div>
+        <div class="col-xs-6 text-center" class="task">
+            <div class= "row">
+                {{#each burger_data}}
+                    {{#unless this.devoured}}
+                <div class="col-xs-9 text-center">
+                    <pre>{{this.id}}. {{this.burger_name}}</pre>
+                </div>
+            <div class="col-xs-3 text-center">
+                <form method="POST" action="/burgers/update?_method=PUT" class="button-size">
+                    <input type="hidden" name="burger_id" type="text" value={{this.id}}>
+                    <button type="submit" class="btn btn-default">
+                        Devour It
+                    </button>
+                    <br>
+                    <br>
+                </form>
+            </div>
+            {{/unless}}
+            {{/each}}
+            </div>
+        </div>
+        <br>
+        <div class="col-xs-6 text-center" class="task">
+            {{#each burger_data}}
+                {{#if this.devoured}}
+                    <input class="form-control" type="text" placeholder="{{this.id}}. {{this.burger_name}}" readonly>
+                {{/if}}
+            {{/each}}
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center enter_section">
+            <form action="/burgers/create" method="POST">
+            <p>Enter in a burger you would like to devour!</p>
+                <input type="text" name="burger_name" cass="form-control" value="" id="enter_text">
+                <button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>    
+            </form>
+            </div>
+        </div>
+    </div>
